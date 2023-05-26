@@ -4,7 +4,6 @@ import { Module } from '@nestjs/common';
 import { SHARED_DOT_ENV } from '@app/common/constants';
 
 import { ServiceBController } from './service-b.controller';
-import { ServiceBService } from './service-b.service';
 
 @Module({
   imports: [
@@ -14,6 +13,6 @@ import { ServiceBService } from './service-b.service';
     }),
   ],
   controllers: [ServiceBController],
-  providers: [ServiceBService],
+  providers: [],
 })
 export class ServiceBModule {}

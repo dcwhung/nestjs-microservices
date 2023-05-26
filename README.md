@@ -28,3 +28,14 @@ Step by step to show how to use nestjs framework to build a API-gateway communic
     1. Update module files to retrieve port setting from .env file 
     2. Update main.ts files listening to port assigned in .env file
     3. Test applications updates 
+
+[Step 3: Transform Services A & B as nestjs microservices](./_README_/step3.md)
+
+1. Update transport layer from HTTP to TCP with service configuration
+2. Remove original AppService usages from the AppModule & AppController file in each service folder
+3. Update AppController to use the Microservice Message pattern to serve clients
+4. Register the Services A & B in API-Gateway
+5. Inject new services into API-Gateway AppService and create a method to query the Services A & B
+6. Use the new method from the AppService in the AppController.
+7. Running the apps in 3 different terminals
+8. Testing the API-Gateway & Microservices A & B with browser or Postman
