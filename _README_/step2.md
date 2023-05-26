@@ -181,7 +181,7 @@ Same as what we have done in api-gateway, update the main.ts files under /apps/s
 /* -- [ADD] Config Service to load .env variables -- */
 import { ConfigService } from '@nestjs/config';
 
-/* -- [ADD] Logger & ValidationPipe -- */
+/* -- [ADD] Logger -- */
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ServiceAModule } from './service-a.module';
