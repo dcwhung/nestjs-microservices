@@ -19,12 +19,3 @@ Step by step to show how to use nestjs framework to build a API-gateway communic
 6. Update ports of Services A & B for testing
 7. Running the apps in 3 different terminals
 8. Testing the apps with browser or Postman
-
-[Step 2: Setup .env file & apply to apps](./_README_/step2.md)
-
-1. Create .env file under /libs/common/
-2. Create constants folder under /libs/common/ with constants.ts & index.ts
-3. ...
-    1. Update module files to retrieve port setting from .env file 
-    2. Update main.ts files listening to port assigned in .env file
-    3. Test applications updates 
