@@ -14,22 +14,22 @@
 
 ```bash
 # -- [INSTALL] nestjs CLI -- 
-$ npm i -g @nestjs/cli
+npm i -g @nestjs/cli
 
 # -- [INSTALL] other packages for project & microservices -- 
-$ npm i @nestjs/common @nestjs/config @nestjs/microservices
-$ npm i class-validator class-transformer
-$ npm i cookie-parser @nestjs/mapped-types
+npm i @nestjs/common @nestjs/config @nestjs/microservices
+npm i class-validator class-transformer
+npm i cookie-parser @nestjs/mapped-types
 
 # -- [INSTALL] nodemon -- 
-$ npm i --save-dev nodemon ts-node
+npm i --save-dev nodemon ts-node
 ```
 
 
 ## 2.1 - Create project folder
 ```bash
 # -- [CREATE] project folder name `nestjs-microservices` -- 
-$ nest new nestjs-microservices
+nest new nestjs-microservices
 ```
 
 Command Result:
@@ -55,8 +55,8 @@ CREATE nestjs-microservices/test/jest-e2e.json (183 bytes)
 🚀  Successfully created project nestjs-microservices
 👉  Get started with the following commands:
 
-$ cd nestjs-microservices
-$ npm run start
+cd nestjs-microservices
+npm run start
 ```
 
 
@@ -75,7 +75,7 @@ $ npm run start
 ## 3. - Create monorepo applications
 ```bash
 # -- [CREATE] Service A application -- 
-$ nest g app service-a
+nest g app service-a
 ```
 
 Command Result: 
@@ -119,7 +119,7 @@ UPDATE nest-cli.json (907 bytes)
 
 ```bash
 # -- [CREATE] Service B application -- 
-$ nest g app service-b
+nest g app service-b
 ```
 
 Command Result: 
@@ -139,7 +139,7 @@ CREATE apps/service-b/test/app.e2e-spec.ts (651 bytes)
 ## 4. - Create common library
 ```bash
 # -- [CREATE] shared library /libs/common/ -- 
-$ nest g library common
+nest g library common
 ```
 
 Command Result:
@@ -158,19 +158,19 @@ UPDATE tsconfig.json (686 bytes)
 
 ```bash
 # -- [DELETE] Empty common library folder -- 
-$ rm -Rf libs/common/src/*
+rm -Rf libs/common/src/*
 ```
 
 
 ## 5. - Rename folder & all paths from apps/nestjs-microservices to apps/api-gateway
 ```bash
 # -- [RENAME] folder -- 
-$ mv apps/nestjs-microservices apps/api-gateway
+mv apps/nestjs-microservices apps/api-gateway
 
 # -- [UPDATE] related files (nest-cli.json, package.json & ./apps/api-gateway/tsconfig.app.json) -- 
-$ perl -i -pe 's|nestjs-microservices|api-gateway|g' nest-cli.json
-$ perl -i -pe 's|apps/nestjs-microservices|apps/api-gateway|g' package.json
-$ perl -i -pe 's|apps/nestjs-microservices|apps/api-gateway|g' ./apps/api-gateway/tsconfig.app.json
+perl -i -pe 's|nestjs-microservices|api-gateway|g' nest-cli.json
+perl -i -pe 's|apps/nestjs-microservices|apps/api-gateway|g' package.json
+perl -i -pe 's|apps/nestjs-microservices|apps/api-gateway|g' ./apps/api-gateway/tsconfig.app.json
 ```
 
 ## 6. - Update ports of Services A & B for testing
@@ -186,13 +186,13 @@ await app.listen(3002);
 ## 7. - Running the apps in 3 different terminals
 ```bash
 # -- Running api-gateway -- 
-$ npm run start:dev api-gateway
+npm run start:dev api-gateway
 
 # -- Running Service A -- 
-$ npm run start:dev service-a
+npm run start:dev service-a
 
 # -- Running Service B -- 
-$ npm run start:dev service-b
+npm run start:dev service-b
 ```
 
 Expected Command Result:
