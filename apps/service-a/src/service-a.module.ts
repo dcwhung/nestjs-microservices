@@ -1,9 +1,10 @@
 import * as path from 'path';
 
-import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
 import { SHARED_DOT_ENV } from '@app/common/constants';
+import { AbstractMicroserviceModule } from '@app/common/abstract/';
 
 import { ServiceAController } from './service-a.controller';
 
@@ -21,4 +22,4 @@ import { ServiceAController } from './service-a.controller';
   controllers: [ServiceAController],
   providers: [],
 })
-export class ServiceAModule {}
+export class ServiceAModule extends AbstractMicroserviceModule {}

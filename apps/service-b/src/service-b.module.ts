@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
 
 import { SHARED_DOT_ENV } from '@app/common/constants';
+import { AbstractMicroserviceModule } from '@app/common/abstract/';
 
 import { ServiceBController } from './service-b.controller';
 
@@ -21,4 +22,4 @@ import { ServiceBController } from './service-b.controller';
   controllers: [ServiceBController],
   providers: [],
 })
-export class ServiceBModule {}
+export class ServiceBModule extends AbstractMicroserviceModule {}
