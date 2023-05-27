@@ -4,9 +4,9 @@
 
 <p align="center">An example of building microservices with nestjs framework.</p>
 
-[<<p BACK](./step3.md) | [INDEX](../README.md)
+[<<p BACK](./step3.md) | [INDEX](../README.md) | [NEXT >>](./step4-2.md)
 
-# Step 4: Abstraction of bootstrap(), Module, Controller & Service
+# Step 4: Abstraction
 
 ## 1. - Abstraction of bootstrap() method in main.ts under all microservices
 
@@ -90,7 +90,7 @@ bootstrap();
 */
 ```
 
-## 1.2.1 - Export new abstract component to ./libs/common/src/abstract/index.ts
+## 1.2.2 - Export new abstract component to ./libs/common/src/abstract/index.ts
 ```ts
 export * from './abstract.microservice.bootstrap';
 ```
@@ -112,6 +112,7 @@ MICROSERVICE_NAME = 'SERVICE_B'
 ## 1.5 - Set module file in each microservice read the new .env file
 ```ts
 /* -- [UPDATE] /apps/service-a/src/service-a.module.ts -- */
+
 
 /* -- [ADD] path -- */
 import * as path from 'path';
@@ -146,7 +147,7 @@ bootstrap();
 /* -- [CAUTION!!] Apply the same updates in /apps/service-b/src/main.ts -- */
 ```
 
-## 1.7. - Running & test the microservices in 2 different terminals
+## 1.7 - Running & test the microservices in 2 different terminals
 ```bash
 # -- Running Service A -- 
 npm run start:dev service-a

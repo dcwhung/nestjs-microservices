@@ -1,16 +1,13 @@
-import { delay, of } from 'rxjs';
+import { Controller, Inject } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
-import { MessagePattern } from '@nestjs/microservices';
-import { Controller, Get, Logger } from '@nestjs/common';
+import { AbstractMicroserviceController } from '@app/common/abstract';
 
 @Controller()
-export class ServiceBController {
-  constructor() {}
-
-  @Get('ping')
-  @MessagePattern({ cmd: 'ping' })
-  ping(_: any) {
-    Logger.log(`Service B :: Someone ping me and I need to pong back~`);
-    return of('pong-b').pipe(delay(1000));
+export class ServiceBController extends AbstractMicroserviceController {
+  constructor(
+    @Inject(ConfigService) configService: ConfigService,
+  ) {
+    super(ServiceBController.name, configService);
   }
 }
