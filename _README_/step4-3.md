@@ -117,12 +117,84 @@ export class ServiceAModule extends AbstractMicroserviceModule {}
 /* -- [CAUTION!!] Apply the same updates in /apps/service-b/src/service-b.module.ts -- */
 ```
 
-## 2.3 - Testing the Microservices A & B with browser or Postman
+## 3.5 - Apply logger middlewate to API-gateway module file
 
-After starting the applications, you can access to them via the following urls and the only difference is that we have logged the HTTP request in server-side:
+```ts
+/* -- [UPDATE] /apps/api-gateway/src/app.module.ts -- */
 
+
+import { ConfigModule } from '@nestjs/config';
+
+/* -- [ADD] MiddlewareConsumer & NestModule -- */
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+
+import { ClientsModule, Transport } from "@nestjs/microservices";
+
+import { SHARED_DOT_ENV } from '@app/common/constants';
+
+/* -- [ADD] logger middleware -- */
+import { LoggerMiddleware } from '@app/common/middlewares';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: SHARED_DOT_ENV,
+    }),
+    ClientsModule.register([
+      {
+        name: 'SERVICE_A',
+        transport: Transport.TCP,
+        options: {
+          host: 'localhost',
+          port: 38881,
+        },
+      }, 
+      {
+        name: 'SERVICE_B',
+        transport: Transport.TCP,
+        options: {
+          host: 'localhost',
+          port: 38882,
+        },
+      }, 
+    ]),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+/* -- 
+  [UPDATE] Implements the AppModule as NestModule, 
+  so as to use MiddlewareConsumer to consume logger middleware, 
+  for logging all HTTP request activities under API-gateway 
+-- */
+// export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
+```
+
+
+## 3.6 - Testing the Microservices A & B with browser or Postman
+
+After starting the applications, you can access to them via the following urls and the only difference is that we have logged the HTTP requests in server-side:
+
+## :: API-Gateway :: - http://localhost:8000/api/ping-all
 ## :: Microservice A :: - http://localhost:8881/ping
 ## :: Microservice B :: - http://localhost:8882/ping
+
+Expected log result in `API-Gateway` terminal:
+```sql
+[Nest] 98508  - 05/28/2023, 12:34:29 AM     LOG [ - API Gateway/bootstrap - ] 🚀 Running on: http://localhost:8000/api
+[Nest] 98508  - 05/28/2023, 12:34:48 AM     LOG [ - HTTP Request - ] GET /api/ping-all 200
+[Nest] 98508  - 05/28/2023, 12:34:48 AM     LOG Sending out TCP request to ping microservice A
+[Nest] 98508  - 05/28/2023, 12:34:48 AM     LOG Sending out TCP request to ping microservice B
+```
 
 Expected log result in `Microservice A` terminal:
 ```sql
