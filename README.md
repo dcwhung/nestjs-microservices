@@ -40,6 +40,6 @@ Step by step to show how to use nestjs framework to build a API-gateway communic
 7. Running the apps in 3 different terminals
 8. Testing the API-Gateway & Microservices A & B with browser or Postman
 
-[Step 4: Abstraction of bootstrap, Module, Controller & Service](./_README_/step4-1.md)
+[Step 4: Abstraction](./_README_/step4-1.md)
 
-[Step 4.1: Abstraction of bootstrap() method in main.ts under all microservices](./_README_/step4-1.md)
+1. [Abstraction of bootstrap() method in main.ts under all microservices](./_README_/step4-1.md)
