@@ -4,7 +4,7 @@
 
 <p align="center">An example of building microservices with nestjs framework.</p>
 
-[<<p BACK](./step2.md) | [INDEX](../README.md) | [NEXT >>](./step4-1.md)
+[<< BACK](./step2.md) | [INDEX](../README.md) | [NEXT >>](./step4-1.md)
 
 # Step 3: Transform Services A & B as nestjs microservices
 

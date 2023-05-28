@@ -6,7 +6,9 @@ import { SHARED_DOT_ENV } from '@app/common/constants';
 import { LoggerMiddleware } from '@app/common/middlewares';
 
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import * as ServiceA from './service-a';
+import * as ServiceB from './service-b';
 
 @Module({
   imports: [
@@ -33,8 +35,16 @@ import { AppService } from './app.service';
       }, 
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController, 
+    ServiceA.SvcAppController, 
+    ServiceB.SvcAppController,
+  ],
+  providers: [
+    ServiceA.SvcAppService,
+    ServiceB.SvcAppService,
+  ],
+
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

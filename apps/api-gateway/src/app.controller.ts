@@ -1,32 +1,39 @@
+
+
 import { map, zip } from 'rxjs';
 
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Logger } from '@nestjs/common';
+
+import * as ServiceA from './service-a/';
+import * as ServiceB from './service-b/';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  protected logger: Logger;
 
-  @Get('/ping-a')
-  pingServiceA() {
-    return this.appService.pingServiceA();
-  }
-
-  @Get('/ping-b')
-  pingServiceB() {
-    return this.appService.pingServiceB();
+  constructor(
+    private readonly serviceA: ServiceA.SvcAppService,
+    private readonly serviceB: ServiceB.SvcAppService,
+  ) {
+    this.logger = new Logger(` - API Gateway/${AppController.name} - `);
   }
 
   @Get('/ping-all')
-  pingAll() {
+  async pingAll() {
+    this.logger.log('/ping-all:: Try to ping all microservices.');
+
     return zip(
-      this.appService.pingServiceA(),
-      this.appService.pingServiceB()
+      await this.serviceA.pingService(),
+      await this.serviceB.pingService(),
     ).pipe(
-      map(([pongServiceA, pongServiceB]) => ({
+      map(([
+        pongServiceA, 
+        pongServiceB,
+      ]) => ({
         pongServiceA,
-        pongServiceB
-      }))
+        pongServiceB,
+      })),
+
     );
   }
 }

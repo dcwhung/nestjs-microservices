@@ -4,7 +4,7 @@
 
 <p align="center">An example of building microservices with nestjs framework.</p>
 
-[<< BACK](./step1.md) | [INDEX](../README.md) | [NEXT >>]
+[<< BACK](./step1.md) | [INDEX](../README.md) | [NEXT >>](./step3.md)
 
 # Step 2: Setup .env file & apply to apps
 

@@ -4,7 +4,7 @@
 
 <p align="center">An example of building microservices with nestjs framework.</p>
 
-[<<p BACK](./step3.md) | [INDEX](../README.md) | [NEXT >>](./step4-2.md)
+[<< BACK](./step3.md) | [INDEX](../README.md) | [NEXT >>](./step4-2.md)
 
 # Step 4: Abstraction
 
