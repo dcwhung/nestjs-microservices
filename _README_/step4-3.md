@@ -29,7 +29,7 @@ touch ./libs/common/src/middlewares/index.ts
 ## 3.2.1 - Create logger.middleware.ts under the middlewares folder
 
 ```ts
-/* -- [CREATE] /libs/common/src/middleware/logger.middleware.ts -- */
+/* -- [CREATE] /libs/common/src/middlewares/logger.middleware.ts -- */
 
 
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';

@@ -1,7 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { INestApplication, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
+
+import { TcpService } from '@app/common/transports';
 
 import { MICROSERVICE_NAME } from '@app/common/constants';
 
@@ -14,14 +15,9 @@ export async function abstractMicroserviceBootstrap(moduleClass: any): Promise<I
   const logger = new Logger(` - ${serviceName}/bootstrap - `);
 
   const servicePort = configService.get(`${serviceName}_PORT`);
-  const tcpOptions = {
-    transport: Transport.TCP,
-    options: {
-      host: 'localhost',
-      port: 30000 + parseInt(servicePort),
-    }
-  };
+  const tcpOptions = new TcpService(configService).getOptions(serviceName);
 
+  /** -- Connect & start microservice with TCP -- */
   app.connectMicroservice(tcpOptions);
 
   await app.startAllMicroservices().then(() => {
@@ -30,6 +26,7 @@ export async function abstractMicroserviceBootstrap(moduleClass: any): Promise<I
     logger.error(`Starting Error: ${err}`);
   });
 
+  /** -- Start HTTP for microservice for standalone debug purpose only -- */
   await app.listen(servicePort).then(() => {
     logger.log(`🚀 Running on: http://localhost:${servicePort}/`);
   });

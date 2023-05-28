@@ -46,3 +46,5 @@ Step by step to show how to use nestjs framework to build a API-gateway communic
 2. [Abstraction of *.controller.ts under all microservices](./_README_/step4-2.md)
 3. [Abstraction of *.module.ts under all microservices](./_README_/step4-3.md)
 4. [Abstraction of pingService() method in all microservices](./_README_/step4-4.md)
+
+[Step 5: Modularize TCP connection](./_README_/step5.md)
