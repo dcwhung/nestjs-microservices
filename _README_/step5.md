@@ -4,7 +4,7 @@
 
 <p align="center">An example of building microservices with nestjs framework.</p>
 
-[<< BACK](./step4-4.md) | [INDEX](../README.md)
+[<< BACK](./step4-4.md) | [INDEX](../README.md) | [NEXT >>](./step6.md)
 
 # Step 5: Modularize TCP connection
 

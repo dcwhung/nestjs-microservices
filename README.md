@@ -48,3 +48,10 @@ Step by step to show how to use nestjs framework to build a API-gateway communic
 4. [Abstraction of pingService() method in all microservices](./_README_/step4-4.md)
 
 [Step 5: Modularize TCP connection](./_README_/step5.md)
+
+[Step 6: Dockerization](./_README_/step6.md)
+1. Create DockerFile for API-Gateway, Microservices A & B
+2. Create .dockerignore
+3. Create docker-compose.yml
+4. Build and start containers
+5. Testing the API-Gateway & Microservices A & B with browser or Postman

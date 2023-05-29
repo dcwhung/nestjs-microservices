@@ -1,0 +1,59 @@
+services:
+  # -- Container for API gateway Nestjs App -- 
+  api-gateway:
+    container_name: api-gateway-p
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    ports:
+      - 8000:8000
+    env_file:
+      - './libs/common/.env'
+    environment:
+      - SERVICE_A_HOST=service-a
+      - SERVICE_B_HOST=service-b
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - service-a
+      - service-b
+  
+  # -- Container for Microservices A Nestjs App -- 
+  service-a:
+    container_name: microservice-a-p
+    build:
+      context: .
+      dockerfile: ./apps/service-a/Dockerfile
+      target: development
+    command: npm run start:dev service-a
+    env_file:
+      - './libs/common/.env'
+    environment:
+      - SERVICE_A_HOST=service-a
+    ports:
+      - 8881:8881
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+  
+  # -- Container for Microservices B Nestjs App -- 
+  service-b:
+    container_name: microservice-b-p
+    build:
+      context: .
+      dockerfile: ./apps/service-b/Dockerfile
+      target: development
+    command: npm run start:dev service-b
+    env_file:
+      - './libs/common/.env'
+    environment:
+      - SERVICE_B_HOST=service-b
+      - MYSQL_TEST_DB_HOST=mysql-db
+    ports:
+      - 8882:8882
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
